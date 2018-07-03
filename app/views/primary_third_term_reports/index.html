@@ -1,0 +1,122 @@
+<!DOCTYPE html> 
+ <html lang="en"> 
+      <head> 
+           <meta content="text/html" charset="utf-8" > 
+           <meta name="viewport" content="width=device-width, initial-scale=1"> 
+           <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" > 
+           <link rel="stylesheet" href="../../../assets/css/jquery-ui.css" > 
+           <link rel="stylesheet" href="../../../assets/css/jquery.datepick.css" > 
+           <link rel="stylesheet" href="../../../assets/css/custom/uploadfile.css" > 
+           <link rel="stylesheet" href="../../../assets/css/fontawesome-all.min.css" > 
+          <link rel="stylesheet" href="../../../assets/css/custom/slide-menu.css" >
+        <link rel="stylesheet" href="../../../assets/css/custom/table-header.css" >
+        <link rel="stylesheet" href="../../../assets/css/custom/view.css" >
+    </head>    <body onload="loadHtmlPage('../menu.html', 'sidemenu');toggle_display('dview');">
+        <div class="container-fluid" style="padding:0; margin:0; top:0; left:0;"> 
+            <div ng-app="primary_third_term_reportsView" ng-controller="primary_third_term_reportsCtrl" class="row">
+                <div id="sidemenu" class="col-xl-3 col-lg-3 col-md-3 d-lg-inline d-md-inline d-sm-none d-none"></div>
+                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <span class="alert alert-danger">{{ berror }}</span>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <ul class="menu">
+                                <li onclick="toggle_display('dview');" class="rootmenu"><i class="fas fa-home" aria-hidden="true"></i><a href="#"> Home</a></li>
+                                <li class="rootmenu"><i class="fas fa-print" aria-hidden="true"></i><a href="#"> Print</a></li>
+                                <li class="rootmenu"><i class="fas fa-cloud-download-alt"></i><a href="#"> Export</a>
+                                    <ul id="menu_list">
+                                        <li><i class="fas fa-file-excel" aria-hidden="true"></i><a href="#">  Excel</a></li>
+                                        <li><i class="fas fa-file-alt" aria-hidden="true"></i><a href="#">  CSV</a></li>
+                                        <li><i class="fas fa-file-pdf" aria-hidden="true"></i><a href="#">  Pdf</a></li>
+                                        <li><i class="fas fa-file-alt" aria-hidden="true"></i><a href="#">  Text</a></li>
+                                        <li><i class="fas fa-file-word" aria-hidden="true"></i><a href="#">  Word</a></li>
+                                    </ul>
+                                </li>
+                                <li onclick="toggle_display('dnew');" class="rootmenu"><i class="fas fa-copy" aria-hidden="true"></i><a href="#"> Add New</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                <div class="row">
+                    <div>
+            <div class="display" id="dnew">
+                <form name="frmPrimary_third_term_report"  method="post" enctype="multipart/form-data">
+                    <input #colname type="hidden" name="colname" ng-model="update.col_name" />
+                    <input #colvalue type="hidden" name="colvalue" ng-model="update.col_value" />
+
+     <div class="form-group">
+      <label for="student_id">Student Id</label>
+      <input type="text" class="form-control" name="student_id" ng-model="primary_third_term_report.student_id" placeholder="Enter student_id" />
+     </div>
+     <div class="form-group">
+      <label for="Term">Term</label>
+      <input type="text" class="form-control" name="Term" ng-model="primary_third_term_report.Term" placeholder="Enter Term" />
+     </div>
+     <div class="form-group">
+      <label for="Session">Session</label>
+      <input type="text" class="form-control" name="Session" ng-model="primary_third_term_report.Session" placeholder="Enter Session" />
+     </div>
+     <div class="form-group">
+      <label for="Class">Class</label>
+      <input type="text" class="form-control" name="Class" ng-model="primary_third_term_report.Class" placeholder="Enter Class" />
+     </div>
+     <div class="form-group">
+      <label for="first_test">First Test</label>
+      <input type="text" class="form-control" name="first_test" ng-model="primary_third_term_report.first_test" placeholder="Enter first_test" />
+     </div>
+     <div class="form-group">
+      <label for="mid_test">Mid Test</label>
+      <input type="text" class="form-control" name="mid_test" ng-model="primary_third_term_report.mid_test" placeholder="Enter mid_test" />
+     </div>
+     <div class="form-group">
+      <label for="total_test">Total Test</label>
+      <input type="text" class="form-control" name="total_test" ng-model="primary_third_term_report.total_test" placeholder="Enter total_test" />
+     </div>
+     <div class="form-group">
+      <label for="Exam">Exam</label>
+      <input type="text" class="form-control" name="Exam" ng-model="primary_third_term_report.Exam" placeholder="Enter Exam" />
+     </div>
+     <div class="form-group">
+      <label for="subject">Subject</label>
+      <input type="text" class="form-control" name="subject" ng-model="primary_third_term_report.subject" placeholder="Enter subject" />
+     </div>
+<button ng-click="primary_third_term_report_save();" type="button" class="btn btn-primary">&nbsp;SAVE&nbsp;</button>
+</form>
+</div><div class="display" id="dview">
+  <table class="table table-hover table-dark table-bordered">    <thead>
+        <tr><th>S/N</th><th>ID</th><th>STUDENT ID</th><th>TERM</th><th>SESSION</th><th>CLASS</th><th>SUBJECT</th><th>&nbsp;</th>
+    </tr></thead><tbody><tr ng-repeat="x in primary_third_term_reports.primary_third_term_report"><td>{{$index + 1}}</td><td>{{x.id}}</td><td>{{x.student_id}}</td><td>{{x.Term}}</td><td>{{x.Session}}</td><td>{{x.Class}}</td><td>{{x.subject}}</td><td align="center">&nbsp;<i onclick="toggle_display('dnew');" ng-click="do_primary_third_term_report_update('id', x.id);" class="fas fa-edit"></i>&nbsp;&nbsp;<i onclick="toggle_display('dsview');" ng-click="primary_third_term_report_view_single('id', x.id);" class="fas fa-eye"></i>&nbsp;&nbsp;<i ng-click="primary_third_term_report_delete('id', x.id);" class="fas fa-trash"></i></td>&nbsp;
+  </tbody>
+</table>
+</div>
+    <div class="display" id="dsview">
+        <table>
+            <tr><td align="right"><b>id:</b></td><td align="left">&nbsp;{{primary_third_term_report.id}}</td></tr>
+            <tr><td align="right"><b>student_id:</b></td><td align="left">&nbsp;{{primary_third_term_report.student_id}}</td></tr>
+            <tr><td align="right"><b>Term:</b></td><td align="left">&nbsp;{{primary_third_term_report.Term}}</td></tr>
+            <tr><td align="right"><b>Session:</b></td><td align="left">&nbsp;{{primary_third_term_report.Session}}</td></tr>
+            <tr><td align="right"><b>Class:</b></td><td align="left">&nbsp;{{primary_third_term_report.Class}}</td></tr>
+            <tr><td align="right"><b>first_test:</b></td><td align="left">&nbsp;{{primary_third_term_report.first_test}}</td></tr>
+            <tr><td align="right"><b>mid_test:</b></td><td align="left">&nbsp;{{primary_third_term_report.mid_test}}</td></tr>
+            <tr><td align="right"><b>total_test:</b></td><td align="left">&nbsp;{{primary_third_term_report.total_test}}</td></tr>
+            <tr><td align="right"><b>Exam:</b></td><td align="left">&nbsp;{{primary_third_term_report.Exam}}</td></tr>
+            <tr><td align="right"><b>subject:</b></td><td align="left">&nbsp;{{primary_third_term_report.subject}}</td></tr>
+        </table>
+    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/popper.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/bootstrap.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/angular.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery-ui.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.datepick.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.table2excel.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.uploadfile.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/utility.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/autocomplete.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/src/primary_third_term_reports.js"></script>    </body>
+</html>

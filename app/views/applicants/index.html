@@ -1,0 +1,189 @@
+<!DOCTYPE html> 
+ <html lang="en"> 
+      <head> 
+           <meta content="text/html" charset="utf-8" > 
+           <meta name="viewport" content="width=device-width, initial-scale=1"> 
+           <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" > 
+           <link rel="stylesheet" href="../../../assets/css/jquery-ui.css" > 
+           <link rel="stylesheet" href="../../../assets/css/jquery.datepick.css" > 
+           <link rel="stylesheet" href="../../../assets/css/custom/uploadfile.css" > 
+           <link rel="stylesheet" href="../../../assets/css/fontawesome-all.min.css" > 
+          <link rel="stylesheet" href="../../../assets/css/custom/slide-menu.css" >
+        <link rel="stylesheet" href="../../../assets/css/custom/table-header.css" >
+        <link rel="stylesheet" href="../../../assets/css/custom/view.css" >
+    </head>    <body onload="loadHtmlPage('../menu.html', 'sidemenu');toggle_display('dview');">
+        <div class="container-fluid" style="padding:0; margin:0; top:0; left:0;"> 
+            <div ng-app="applicantsView" ng-controller="applicantsCtrl" class="row">
+                <div id="sidemenu" class="col-xl-3 col-lg-3 col-md-3 d-lg-inline d-md-inline d-sm-none d-none"></div>
+                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <span class="alert alert-danger">{{ berror }}</span>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <ul class="menu">
+                                <li onclick="toggle_display('dview');" class="rootmenu"><i class="fas fa-home" aria-hidden="true"></i><a href="#"> Home</a></li>
+                                <li class="rootmenu"><i class="fas fa-print" aria-hidden="true"></i><a href="#"> Print</a></li>
+                                <li class="rootmenu"><i class="fas fa-cloud-download-alt"></i><a href="#"> Export</a>
+                                    <ul id="menu_list">
+                                        <li><i class="fas fa-file-excel" aria-hidden="true"></i><a href="#">  Excel</a></li>
+                                        <li><i class="fas fa-file-alt" aria-hidden="true"></i><a href="#">  CSV</a></li>
+                                        <li><i class="fas fa-file-pdf" aria-hidden="true"></i><a href="#">  Pdf</a></li>
+                                        <li><i class="fas fa-file-alt" aria-hidden="true"></i><a href="#">  Text</a></li>
+                                        <li><i class="fas fa-file-word" aria-hidden="true"></i><a href="#">  Word</a></li>
+                                    </ul>
+                                </li>
+                                <li onclick="toggle_display('dnew');" class="rootmenu"><i class="fas fa-copy" aria-hidden="true"></i><a href="#"> Add New</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                <div class="row">
+                    <div>
+            <div class="display" id="dnew">
+                <form name="frmApplicant"  method="post" enctype="multipart/form-data">
+                    <input #colname type="hidden" name="colname" ng-model="update.col_name" />
+                    <input #colvalue type="hidden" name="colvalue" ng-model="update.col_value" />
+
+     <div class="form-group">
+      <label for="application_Number">Application Number</label>
+      <input type="text" class="form-control" name="application_Number" ng-model="applicant.application_Number" placeholder="Enter application_Number" />
+     </div>
+     <div class="form-group">
+      <label for="full_name">Full Name</label>
+      <input type="text" class="form-control" name="full_name" ng-model="applicant.full_name" placeholder="Enter full_name" />
+     </div>
+     <div class="form-group">
+      <label for="phone">Phone</label>
+      <input type="tel" class="form-control" name="phone" ng-model="applicant.phone" placeholder="Enter phone" />
+     </div>
+     <div class="form-group">
+      <label for="application_fee">Application Fee</label>
+      <input type="text" class="form-control" name="application_fee" ng-model="applicant.application_fee" placeholder="Enter application_fee" />
+     </div>
+     <div class="form-group">
+      <label for="passport_photograph">Passport Photograph</label>
+      <input type="text" class="form-control" name="passport_photograph" ng-model="applicant.passport_photograph" placeholder="Enter passport_photograph" />
+     </div>
+     <div class="form-group">
+      <label for="date_of_birth">Date Of Birth</label>
+      <input type="date" class="form-control" name="date_of_birth" ng-model="applicant.date_of_birth" placeholder="Enter date_of_birth" />
+     </div>
+     <div class="form-group">
+       <label for="gender">Gender</label>
+       <select class="form-control" name="gender" ng-model="applicant.gender">
+         <option value="Male">Male</option>
+         <option value="Female">Female</option>
+       </select>
+     </div>
+     <div class="form-group">
+      <label for="nationality">Nationality</label>
+      <input type="text" class="form-control" name="nationality" ng-model="applicant.nationality" placeholder="Enter nationality" />
+     </div>
+     <div class="form-group">
+      <label for="state_of_origin">State Of Origin</label>
+      <input type="text" class="form-control" name="state_of_origin" ng-model="applicant.state_of_origin" placeholder="Enter state_of_origin" />
+     </div>
+     <div class="form-group">
+      <label for="religion">Religion</label>
+      <input type="text" class="form-control" name="religion" ng-model="applicant.religion" placeholder="Enter religion" />
+     </div>
+     <div class="form-group">
+      <label for="present_class">Present Class</label>
+      <input type="text" class="form-control" name="present_class" ng-model="applicant.present_class" placeholder="Enter present_class" />
+     </div>
+     <div class="form-group">
+      <label for="class_seeking_admission_to">Class Seeking Admission To</label>
+      <input type="text" class="form-control" name="class_seeking_admission_to" ng-model="applicant.class_seeking_admission_to" placeholder="Enter class_seeking_admission_to" />
+     </div>
+     <div class="form-group">
+      <label for="home_address">Home Address</label>
+      <textarea class="form-control" name="home_address" ng-model="applicant.home_address">Enter home_address</textarea>
+     </div>
+     <div class="form-group">
+      <label for="previous_school">Previous School</label>
+      <textarea class="form-control" name="previous_school" ng-model="applicant.previous_school">Enter previous_school</textarea>
+     </div>
+     <div class="form-group">
+      <label for="skills">Skills</label>
+      <textarea class="form-control" name="skills" ng-model="applicant.skills">Enter skills</textarea>
+     </div>
+     <div class="form-group">
+      <label for="other_information">Other Information</label>
+      <textarea class="form-control" name="other_information" ng-model="applicant.other_information">Enter other_information</textarea>
+     </div>
+     <div class="form-group">
+      <label for="test_score">Test Score</label>
+      <input type="text" class="form-control" name="test_score" ng-model="applicant.test_score" placeholder="Enter test_score" />
+     </div>
+     <div class="form-group">
+      <label for="parent_id">Parent Id</label>
+      <input type="text" class="form-control" name="parent_id" ng-model="applicant.parent_id" placeholder="Enter parent_id" />
+     </div>
+     <div class="form-group">
+      <label for="completed">Completed</label>
+      <input type="text" class="form-control" name="completed" ng-model="applicant.completed" placeholder="Enter completed" />
+     </div>
+     <div class="form-group">
+      <label for="created_at">Created At</label>
+      <input type="text" class="form-control" name="created_at" ng-model="applicant.created_at" placeholder="Enter created_at" />
+     </div>
+     <div class="form-group">
+      <label for="updated_at">Updated At</label>
+      <input type="date" class="form-control" name="updated_at" ng-model="applicant.updated_at" placeholder="Enter updated_at" />
+     </div>
+<button ng-click="applicant_save();" type="button" class="btn btn-primary">&nbsp;SAVE&nbsp;</button>
+</form>
+</div><div class="display" id="dview">
+  <table class="table table-hover table-dark table-bordered">    <thead>
+        <tr><th>S/N</th><th>ID</th><th>APPLICATION NUMBER</th><th>FULL NAME</th><th>EMAIL</th><th>PHONE</th><th>DATE OF BIRTH</th><th>GENDER</th><th>&nbsp;</th>
+    </tr></thead><tbody><tr ng-repeat="x in applicants.applicant"><td>{{$index + 1}}</td><td>{{x.id}}</td><td>{{x.application_Number}}</td><td>{{x.full_name}}</td><td>{{x.email}}</td><td>{{x.phone}}</td><td>{{x.date_of_birth}}</td><td>{{x.gender}}</td><td align="center">&nbsp;<i onclick="toggle_display('dnew');" ng-click="do_applicant_update('id', x.id);" class="fas fa-edit"></i>&nbsp;&nbsp;<i onclick="toggle_display('dsview');" ng-click="applicant_view_single('id', x.id);" class="fas fa-eye"></i>&nbsp;&nbsp;<i ng-click="applicant_delete('id', x.id);" class="fas fa-trash"></i></td>&nbsp;
+  </tbody>
+</table>
+</div>
+    <div class="display" id="dsview">
+        <table>
+            <tr><td align="right"><b>id:</b></td><td align="left">&nbsp;{{applicant.id}}</td></tr>
+            <tr><td align="right"><b>application_Number:</b></td><td align="left">&nbsp;{{applicant.application_Number}}</td></tr>
+            <tr><td align="right"><b>full_name:</b></td><td align="left">&nbsp;{{applicant.full_name}}</td></tr>
+            <tr><td align="right"><b>email:</b></td><td align="left">&nbsp;{{applicant.email}}</td></tr>
+            <tr><td align="right"><b>phone:</b></td><td align="left">&nbsp;{{applicant.phone}}</td></tr>
+            <tr><td align="right"><b>application_fee:</b></td><td align="left">&nbsp;{{applicant.application_fee}}</td></tr>
+            <tr><td align="right"><b>passport_photograph:</b></td><td align="left">&nbsp;{{applicant.passport_photograph}}</td></tr>
+            <tr><td align="right"><b>date_of_birth:</b></td><td align="left">&nbsp;{{applicant.date_of_birth}}</td></tr>
+            <tr><td align="right"><b>gender:</b></td><td align="left">&nbsp;{{applicant.gender}}</td></tr>
+            <tr><td align="right"><b>nationality:</b></td><td align="left">&nbsp;{{applicant.nationality}}</td></tr>
+            <tr><td align="right"><b>state_of_origin:</b></td><td align="left">&nbsp;{{applicant.state_of_origin}}</td></tr>
+            <tr><td align="right"><b>religion:</b></td><td align="left">&nbsp;{{applicant.religion}}</td></tr>
+            <tr><td align="right"><b>present_class:</b></td><td align="left">&nbsp;{{applicant.present_class}}</td></tr>
+            <tr><td align="right"><b>class_seeking_admission_to:</b></td><td align="left">&nbsp;{{applicant.class_seeking_admission_to}}</td></tr>
+            <tr><td align="right"><b>home_address:</b></td><td align="left">&nbsp;{{applicant.home_address}}</td></tr>
+            <tr><td align="right"><b>previous_school:</b></td><td align="left">&nbsp;{{applicant.previous_school}}</td></tr>
+            <tr><td align="right"><b>certificate_obtained:</b></td><td align="left">&nbsp;{{applicant.certificate_obtained}}</td></tr>
+            <tr><td align="right"><b>skills:</b></td><td align="left">&nbsp;{{applicant.skills}}</td></tr>
+            <tr><td align="right"><b>other_information:</b></td><td align="left">&nbsp;{{applicant.other_information}}</td></tr>
+            <tr><td align="right"><b>clergy_attestation:</b></td><td align="left">&nbsp;{{applicant.clergy_attestation}}</td></tr>
+            <tr><td align="right"><b>birth_certificate:</b></td><td align="left">&nbsp;{{applicant.birth_certificate}}</td></tr>
+            <tr><td align="right"><b>test_score:</b></td><td align="left">&nbsp;{{applicant.test_score}}</td></tr>
+            <tr><td align="right"><b>parent_id:</b></td><td align="left">&nbsp;{{applicant.parent_id}}</td></tr>
+            <tr><td align="right"><b>completed:</b></td><td align="left">&nbsp;{{applicant.completed}}</td></tr>
+            <tr><td align="right"><b>created_at:</b></td><td align="left">&nbsp;{{applicant.created_at}}</td></tr>
+            <tr><td align="right"><b>updated_at:</b></td><td align="left">&nbsp;{{applicant.updated_at}}</td></tr>
+        </table>
+    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/popper.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/bootstrap.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/angular.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery-ui.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.datepick.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.table2excel.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.uploadfile.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/utility.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/autocomplete.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/src/applicants.js"></script>    </body>
+</html>

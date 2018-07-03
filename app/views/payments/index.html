@@ -1,0 +1,137 @@
+<!DOCTYPE html> 
+ <html lang="en"> 
+      <head> 
+           <meta content="text/html" charset="utf-8" > 
+           <meta name="viewport" content="width=device-width, initial-scale=1"> 
+           <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" > 
+           <link rel="stylesheet" href="../../../assets/css/jquery-ui.css" > 
+           <link rel="stylesheet" href="../../../assets/css/jquery.datepick.css" > 
+           <link rel="stylesheet" href="../../../assets/css/custom/uploadfile.css" > 
+           <link rel="stylesheet" href="../../../assets/css/fontawesome-all.min.css" > 
+          <link rel="stylesheet" href="../../../assets/css/custom/slide-menu.css" >
+        <link rel="stylesheet" href="../../../assets/css/custom/table-header.css" >
+        <link rel="stylesheet" href="../../../assets/css/custom/view.css" >
+    </head>    <body onload="loadHtmlPage('../menu.html', 'sidemenu');toggle_display('dview');">
+        <div class="container-fluid" style="padding:0; margin:0; top:0; left:0;"> 
+            <div ng-app="paymentsView" ng-controller="paymentsCtrl" class="row">
+                <div id="sidemenu" class="col-xl-3 col-lg-3 col-md-3 d-lg-inline d-md-inline d-sm-none d-none"></div>
+                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <span class="alert alert-danger">{{ berror }}</span>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <ul class="menu">
+                                <li onclick="toggle_display('dview');" class="rootmenu"><i class="fas fa-home" aria-hidden="true"></i><a href="#"> Home</a></li>
+                                <li class="rootmenu"><i class="fas fa-print" aria-hidden="true"></i><a href="#"> Print</a></li>
+                                <li class="rootmenu"><i class="fas fa-cloud-download-alt"></i><a href="#"> Export</a>
+                                    <ul id="menu_list">
+                                        <li><i class="fas fa-file-excel" aria-hidden="true"></i><a href="#">  Excel</a></li>
+                                        <li><i class="fas fa-file-alt" aria-hidden="true"></i><a href="#">  CSV</a></li>
+                                        <li><i class="fas fa-file-pdf" aria-hidden="true"></i><a href="#">  Pdf</a></li>
+                                        <li><i class="fas fa-file-alt" aria-hidden="true"></i><a href="#">  Text</a></li>
+                                        <li><i class="fas fa-file-word" aria-hidden="true"></i><a href="#">  Word</a></li>
+                                    </ul>
+                                </li>
+                                <li onclick="toggle_display('dnew');" class="rootmenu"><i class="fas fa-copy" aria-hidden="true"></i><a href="#"> Add New</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                <div class="row">
+                    <div>
+            <div class="display" id="dnew">
+                <form name="frmPayment"  method="post" enctype="multipart/form-data">
+                    <input #colname type="hidden" name="colname" ng-model="update.col_name" />
+                    <input #colvalue type="hidden" name="colvalue" ng-model="update.col_value" />
+
+     <div class="form-group">
+      <label for="teller_number">Teller Number</label>
+      <input type="text" class="form-control" name="teller_number" ng-model="payment.teller_number" placeholder="Enter teller_number" />
+     </div>
+     <div class="form-group">
+      <label for="payee">Payee</label>
+      <input type="text" class="form-control" name="payee" ng-model="payment.payee" placeholder="Enter payee" />
+     </div>
+     <div class="form-group">
+      <label for="payee_phone">Payee Phone</label>
+      <input type="tel" class="form-control" name="payee_phone" ng-model="payment.payee_phone" placeholder="Enter payee_phone" />
+     </div>
+     <div class="form-group">
+      <label for="Bank">Bank</label>
+      <input type="text" class="form-control" name="Bank" ng-model="payment.Bank" placeholder="Enter Bank" />
+     </div>
+     <div class="form-group">
+      <label for="Account_Number">Account Number</label>
+      <input type="text" class="form-control" name="Account_Number" ng-model="payment.Account_Number" placeholder="Enter Account_Number" />
+     </div>
+     <div class="form-group">
+      <label for="amount_Paid">Amount Paid</label>
+      <input type="text" class="form-control" name="amount_Paid" ng-model="payment.amount_Paid" placeholder="Enter amount_Paid" />
+     </div>
+     <div class="form-group">
+      <label for="deposit_date">Deposit Date</label>
+      <input type="date" class="form-control" name="deposit_date" ng-model="payment.deposit_date" placeholder="Enter deposit_date" />
+     </div>
+     <div class="form-group">
+      <label for="source_Wallet">Source Wallet</label>
+      <input type="text" class="form-control" name="source_Wallet" ng-model="payment.source_Wallet" placeholder="Enter source_Wallet" />
+     </div>
+     <div class="form-group">
+      <label for="dest_Wallet">Dest Wallet</label>
+      <input type="text" class="form-control" name="dest_Wallet" ng-model="payment.dest_Wallet" placeholder="Enter dest_Wallet" />
+     </div>
+     <div class="form-group">
+      <label for="slip_Upload">Slip Upload</label>
+      <input type="text" class="form-control" name="slip_Upload" ng-model="payment.slip_Upload" placeholder="Enter slip_Upload" />
+     </div>
+     <div class="form-group">
+      <label for="payment_purpose">Payment Purpose</label>
+      <input type="text" class="form-control" name="payment_purpose" ng-model="payment.payment_purpose" placeholder="Enter payment_purpose" />
+     </div>
+     <div class="form-group">
+      <label for="paymentchannel">Paymentchannel</label>
+      <input type="text" class="form-control" name="paymentchannel" ng-model="payment.paymentchannel" placeholder="Enter paymentchannel" />
+     </div>
+<button ng-click="payment_save();" type="button" class="btn btn-primary">&nbsp;SAVE&nbsp;</button>
+</form>
+</div><div class="display" id="dview">
+  <table class="table table-hover table-dark table-bordered">    <thead>
+        <tr><th>S/N</th><th>ID</th><th>TELLER NUMBER</th><th>PAYEE</th><th>PAYEE PHONE</th><th>BANK</th><th>ACCOUNT NUMBER</th><th>AMOUNT PAID</th><th>SLIP UPLOAD</th><th>PAYMENT PURPOSE</th><th>PAYMENTCHANNEL</th><th>&nbsp;</th>
+    </tr></thead><tbody><tr ng-repeat="x in payments.payment"><td>{{$index + 1}}</td><td>{{x.id}}</td><td>{{x.teller_number}}</td><td>{{x.payee}}</td><td>{{x.payee_phone}}</td><td>{{x.Bank}}</td><td>{{x.Account_Number}}</td><td>{{x.amount_Paid}}</td><td>{{x.slip_Upload}}</td><td>{{x.payment_purpose}}</td><td>{{x.paymentchannel}}</td><td align="center">&nbsp;<i onclick="toggle_display('dnew');" ng-click="do_payment_update('id', x.id);" class="fas fa-edit"></i>&nbsp;&nbsp;<i onclick="toggle_display('dsview');" ng-click="payment_view_single('id', x.id);" class="fas fa-eye"></i>&nbsp;&nbsp;<i ng-click="payment_delete('id', x.id);" class="fas fa-trash"></i></td>&nbsp;
+  </tbody>
+</table>
+</div>
+    <div class="display" id="dsview">
+        <table>
+            <tr><td align="right"><b>id:</b></td><td align="left">&nbsp;{{payment.id}}</td></tr>
+            <tr><td align="right"><b>teller_number:</b></td><td align="left">&nbsp;{{payment.teller_number}}</td></tr>
+            <tr><td align="right"><b>payee:</b></td><td align="left">&nbsp;{{payment.payee}}</td></tr>
+            <tr><td align="right"><b>payee_phone:</b></td><td align="left">&nbsp;{{payment.payee_phone}}</td></tr>
+            <tr><td align="right"><b>Bank:</b></td><td align="left">&nbsp;{{payment.Bank}}</td></tr>
+            <tr><td align="right"><b>Account_Number:</b></td><td align="left">&nbsp;{{payment.Account_Number}}</td></tr>
+            <tr><td align="right"><b>amount_Paid:</b></td><td align="left">&nbsp;{{payment.amount_Paid}}</td></tr>
+            <tr><td align="right"><b>deposit_date:</b></td><td align="left">&nbsp;{{payment.deposit_date}}</td></tr>
+            <tr><td align="right"><b>source_Wallet:</b></td><td align="left">&nbsp;{{payment.source_Wallet}}</td></tr>
+            <tr><td align="right"><b>dest_Wallet:</b></td><td align="left">&nbsp;{{payment.dest_Wallet}}</td></tr>
+            <tr><td align="right"><b>slip_Upload:</b></td><td align="left">&nbsp;{{payment.slip_Upload}}</td></tr>
+            <tr><td align="right"><b>payment_purpose:</b></td><td align="left">&nbsp;{{payment.payment_purpose}}</td></tr>
+            <tr><td align="right"><b>paymentchannel:</b></td><td align="left">&nbsp;{{payment.paymentchannel}}</td></tr>
+        </table>
+    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/popper.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/bootstrap.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/angular.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery-ui.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.datepick.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.table2excel.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.uploadfile.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/utility.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/autocomplete.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/src/payments.js"></script>    </body>
+</html>

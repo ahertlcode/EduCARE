@@ -1,0 +1,184 @@
+<!DOCTYPE html> 
+ <html lang="en"> 
+      <head> 
+           <meta content="text/html" charset="utf-8" > 
+           <meta name="viewport" content="width=device-width, initial-scale=1"> 
+           <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" > 
+           <link rel="stylesheet" href="../../../assets/css/jquery-ui.css" > 
+           <link rel="stylesheet" href="../../../assets/css/jquery.datepick.css" > 
+           <link rel="stylesheet" href="../../../assets/css/custom/uploadfile.css" > 
+           <link rel="stylesheet" href="../../../assets/css/fontawesome-all.min.css" > 
+          <link rel="stylesheet" href="../../../assets/css/custom/slide-menu.css" >
+        <link rel="stylesheet" href="../../../assets/css/custom/table-header.css" >
+        <link rel="stylesheet" href="../../../assets/css/custom/view.css" >
+    </head>    <body onload="loadHtmlPage('../menu.html', 'sidemenu');toggle_display('dview');">
+        <div class="container-fluid" style="padding:0; margin:0; top:0; left:0;"> 
+            <div ng-app="studentsView" ng-controller="studentsCtrl" class="row">
+                <div id="sidemenu" class="col-xl-3 col-lg-3 col-md-3 d-lg-inline d-md-inline d-sm-none d-none"></div>
+                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <span class="alert alert-danger">{{ berror }}</span>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <ul class="menu">
+                                <li onclick="toggle_display('dview');" class="rootmenu"><i class="fas fa-home" aria-hidden="true"></i><a href="#"> Home</a></li>
+                                <li class="rootmenu"><i class="fas fa-print" aria-hidden="true"></i><a href="#"> Print</a></li>
+                                <li class="rootmenu"><i class="fas fa-cloud-download-alt"></i><a href="#"> Export</a>
+                                    <ul id="menu_list">
+                                        <li><i class="fas fa-file-excel" aria-hidden="true"></i><a href="#">  Excel</a></li>
+                                        <li><i class="fas fa-file-alt" aria-hidden="true"></i><a href="#">  CSV</a></li>
+                                        <li><i class="fas fa-file-pdf" aria-hidden="true"></i><a href="#">  Pdf</a></li>
+                                        <li><i class="fas fa-file-alt" aria-hidden="true"></i><a href="#">  Text</a></li>
+                                        <li><i class="fas fa-file-word" aria-hidden="true"></i><a href="#">  Word</a></li>
+                                    </ul>
+                                </li>
+                                <li onclick="toggle_display('dnew');" class="rootmenu"><i class="fas fa-copy" aria-hidden="true"></i><a href="#"> Add New</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                <div class="row">
+                    <div>
+            <div class="display" id="dnew">
+                <form name="frmStudent"  method="post" enctype="multipart/form-data">
+                    <input #colname type="hidden" name="colname" ng-model="update.col_name" />
+                    <input #colvalue type="hidden" name="colvalue" ng-model="update.col_value" />
+
+     <div class="form-group">
+      <label for="student_id">Student Id</label>
+      <input type="text" class="form-control" name="student_id" ng-model="student.student_id" placeholder="Enter student_id" />
+     </div>
+     <div class="form-group">
+      <label for="surname">Surname</label>
+      <input type="text" class="form-control" name="surname" ng-model="student.surname" placeholder="Enter surname" />
+     </div>
+     <div class="form-group">
+      <label for="first_name">First Name</label>
+      <input type="text" class="form-control" name="first_name" ng-model="student.first_name" placeholder="Enter first_name" />
+     </div>
+     <div class="form-group">
+      <label for="middle_name">Middle Name</label>
+      <input type="text" class="form-control" name="middle_name" ng-model="student.middle_name" placeholder="Enter middle_name" />
+     </div>
+     <div class="form-group">
+      <label for="date_of_birth">Date Of Birth</label>
+      <input type="date" class="form-control" name="date_of_birth" ng-model="student.date_of_birth" placeholder="Enter date_of_birth" />
+     </div>
+     <div class="form-group">
+      <label for="place_of_birth">Place Of Birth</label>
+      <input type="text" class="form-control" name="place_of_birth" ng-model="student.place_of_birth" placeholder="Enter place_of_birth" />
+     </div>
+     <div class="form-group">
+      <label for="parent_id">Parent Id</label>
+      <input type="text" class="form-control" name="parent_id" ng-model="student.parent_id" placeholder="Enter parent_id" />
+     </div>
+     <div class="form-group">
+      <label for="state_of_origin">State Of Origin</label>
+      <input type="text" class="form-control" name="state_of_origin" ng-model="student.state_of_origin" placeholder="Enter state_of_origin" />
+     </div>
+     <div class="form-group">
+      <label for="local_govt_area">Local Govt Area</label>
+      <input type="text" class="form-control" name="local_govt_area" ng-model="student.local_govt_area" placeholder="Enter local_govt_area" />
+     </div>
+     <div class="form-group">
+      <label for="town">Town</label>
+      <input type="text" class="form-control" name="town" ng-model="student.town" placeholder="Enter town" />
+     </div>
+     <div class="form-group">
+       <label for="gender">Gender</label>
+       <select class="form-control" name="gender" ng-model="student.gender">
+         <option value="Male">Male</option>
+         <option value="Female">Female</option>
+       </select>
+     </div>
+     <div class="form-group">
+      <label for="blood_group">Blood Group</label>
+      <input type="text" class="form-control" name="blood_group" ng-model="student.blood_group" placeholder="Enter blood_group" />
+     </div>
+     <div class="form-group">
+      <label for="genotype">Genotype</label>
+      <input type="text" class="form-control" name="genotype" ng-model="student.genotype" placeholder="Enter genotype" />
+     </div>
+     <div class="form-group">
+      <label for="home_address">Home Address</label>
+      <input type="text" class="form-control" name="home_address" ng-model="student.home_address" placeholder="Enter home_address" />
+     </div>
+     <div class="form-group">
+      <label for="home_address">Home Address</label>
+      <textarea class="form-control" name="home_address" ng-model="student.home_address">Enter home_address</textarea>
+     </div>
+     <div class="form-group">
+      <label for="sport_house">Sport House</label>
+      <input type="text" class="form-control" name="sport_house" ng-model="student.sport_house" placeholder="Enter sport_house" />
+     </div>
+     <div class="form-group">
+      <label for="class_on_admission">Class On Admission</label>
+      <input type="text" class="form-control" name="class_on_admission" ng-model="student.class_on_admission" placeholder="Enter class_on_admission" />
+     </div>
+     <div class="form-group">
+      <label for="current_class">Current Class</label>
+      <input type="text" class="form-control" name="current_class" ng-model="student.current_class" placeholder="Enter current_class" />
+     </div>
+     <div class="form-group">
+      <label for="passport_photograph">Passport Photograph</label>
+      <input type="text" class="form-control" name="passport_photograph" ng-model="student.passport_photograph" placeholder="Enter passport_photograph" />
+     </div>
+     <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" name="email" ng-model="student.email" placeholder="Enter email" />
+     </div>
+     <div class="form-group">
+      <label for="phone">Phone</label>
+      <input type="tel" class="form-control" name="phone" ng-model="student.phone" placeholder="Enter phone" />
+     </div>
+<button ng-click="student_save();" type="button" class="btn btn-primary">&nbsp;SAVE&nbsp;</button>
+</form>
+</div><div class="display" id="dview">
+  <table class="table table-hover table-dark table-bordered">    <thead>
+        <tr><th>S/N</th><th>ID</th><th>STUDENT ID</th><th>SURNAME</th><th>FIRST NAME</th><th>DATE OF BIRTH</th><th>EMAIL</th><th>&nbsp;</th>
+    </tr></thead><tbody><tr ng-repeat="x in students.student"><td>{{$index + 1}}</td><td>{{x.id}}</td><td>{{x.student_id}}</td><td>{{x.surname}}</td><td>{{x.first_name}}</td><td>{{x.date_of_birth}}</td><td>{{x.email}}</td><td align="center">&nbsp;<i onclick="toggle_display('dnew');" ng-click="do_student_update('id', x.id);" class="fas fa-edit"></i>&nbsp;&nbsp;<i onclick="toggle_display('dsview');" ng-click="student_view_single('id', x.id);" class="fas fa-eye"></i>&nbsp;&nbsp;<i ng-click="student_delete('id', x.id);" class="fas fa-trash"></i></td>&nbsp;
+  </tbody>
+</table>
+</div>
+    <div class="display" id="dsview">
+        <table>
+            <tr><td align="right"><b>id:</b></td><td align="left">&nbsp;{{student.id}}</td></tr>
+            <tr><td align="right"><b>student_id:</b></td><td align="left">&nbsp;{{student.student_id}}</td></tr>
+            <tr><td align="right"><b>surname:</b></td><td align="left">&nbsp;{{student.surname}}</td></tr>
+            <tr><td align="right"><b>first_name:</b></td><td align="left">&nbsp;{{student.first_name}}</td></tr>
+            <tr><td align="right"><b>middle_name:</b></td><td align="left">&nbsp;{{student.middle_name}}</td></tr>
+            <tr><td align="right"><b>date_of_birth:</b></td><td align="left">&nbsp;{{student.date_of_birth}}</td></tr>
+            <tr><td align="right"><b>place_of_birth:</b></td><td align="left">&nbsp;{{student.place_of_birth}}</td></tr>
+            <tr><td align="right"><b>parent_id:</b></td><td align="left">&nbsp;{{student.parent_id}}</td></tr>
+            <tr><td align="right"><b>state_of_origin:</b></td><td align="left">&nbsp;{{student.state_of_origin}}</td></tr>
+            <tr><td align="right"><b>local_govt_area:</b></td><td align="left">&nbsp;{{student.local_govt_area}}</td></tr>
+            <tr><td align="right"><b>town:</b></td><td align="left">&nbsp;{{student.town}}</td></tr>
+            <tr><td align="right"><b>gender:</b></td><td align="left">&nbsp;{{student.gender}}</td></tr>
+            <tr><td align="right"><b>blood_group:</b></td><td align="left">&nbsp;{{student.blood_group}}</td></tr>
+            <tr><td align="right"><b>genotype:</b></td><td align="left">&nbsp;{{student.genotype}}</td></tr>
+            <tr><td align="right"><b>home_address:</b></td><td align="left">&nbsp;{{student.home_address}}</td></tr>
+            <tr><td align="right"><b>sport_house:</b></td><td align="left">&nbsp;{{student.sport_house}}</td></tr>
+            <tr><td align="right"><b>class_on_admission:</b></td><td align="left">&nbsp;{{student.class_on_admission}}</td></tr>
+            <tr><td align="right"><b>current_class:</b></td><td align="left">&nbsp;{{student.current_class}}</td></tr>
+            <tr><td align="right"><b>passport_photograph:</b></td><td align="left">&nbsp;{{student.passport_photograph}}</td></tr>
+            <tr><td align="right"><b>email:</b></td><td align="left">&nbsp;{{student.email}}</td></tr>
+            <tr><td align="right"><b>phone:</b></td><td align="left">&nbsp;{{student.phone}}</td></tr>
+        </table>
+    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/popper.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/bootstrap.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/angular.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery-ui.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.datepick.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.table2excel.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.uploadfile.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/utility.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/autocomplete.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/src/students.js"></script>    </body>
+</html>

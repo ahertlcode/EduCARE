@@ -1,0 +1,144 @@
+<!DOCTYPE html> 
+ <html lang="en"> 
+      <head> 
+           <meta content="text/html" charset="utf-8" > 
+           <meta name="viewport" content="width=device-width, initial-scale=1"> 
+           <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" > 
+           <link rel="stylesheet" href="../../../assets/css/jquery-ui.css" > 
+           <link rel="stylesheet" href="../../../assets/css/jquery.datepick.css" > 
+           <link rel="stylesheet" href="../../../assets/css/custom/uploadfile.css" > 
+           <link rel="stylesheet" href="../../../assets/css/fontawesome-all.min.css" > 
+          <link rel="stylesheet" href="../../../assets/css/custom/slide-menu.css" >
+        <link rel="stylesheet" href="../../../assets/css/custom/table-header.css" >
+        <link rel="stylesheet" href="../../../assets/css/custom/view.css" >
+    </head>    <body onload="loadHtmlPage('../menu.html', 'sidemenu');toggle_display('dview');">
+        <div class="container-fluid" style="padding:0; margin:0; top:0; left:0;"> 
+            <div ng-app="teachersView" ng-controller="teachersCtrl" class="row">
+                <div id="sidemenu" class="col-xl-3 col-lg-3 col-md-3 d-lg-inline d-md-inline d-sm-none d-none"></div>
+                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <span class="alert alert-danger">{{ berror }}</span>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <ul class="menu">
+                                <li onclick="toggle_display('dview');" class="rootmenu"><i class="fas fa-home" aria-hidden="true"></i><a href="#"> Home</a></li>
+                                <li class="rootmenu"><i class="fas fa-print" aria-hidden="true"></i><a href="#"> Print</a></li>
+                                <li class="rootmenu"><i class="fas fa-cloud-download-alt"></i><a href="#"> Export</a>
+                                    <ul id="menu_list">
+                                        <li><i class="fas fa-file-excel" aria-hidden="true"></i><a href="#">  Excel</a></li>
+                                        <li><i class="fas fa-file-alt" aria-hidden="true"></i><a href="#">  CSV</a></li>
+                                        <li><i class="fas fa-file-pdf" aria-hidden="true"></i><a href="#">  Pdf</a></li>
+                                        <li><i class="fas fa-file-alt" aria-hidden="true"></i><a href="#">  Text</a></li>
+                                        <li><i class="fas fa-file-word" aria-hidden="true"></i><a href="#">  Word</a></li>
+                                    </ul>
+                                </li>
+                                <li onclick="toggle_display('dnew');" class="rootmenu"><i class="fas fa-copy" aria-hidden="true"></i><a href="#"> Add New</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                <div class="row">
+                    <div>
+            <div class="display" id="dnew">
+                <form name="frmTeacher"  method="post" enctype="multipart/form-data">
+                    <input #colname type="hidden" name="colname" ng-model="update.col_name" />
+                    <input #colvalue type="hidden" name="colvalue" ng-model="update.col_value" />
+
+     <div class="form-group">
+      <label for="employment_id">Employment Id</label>
+      <input type="text" class="form-control" name="employment_id" ng-model="teacher.employment_id" placeholder="Enter employment_id" />
+     </div>
+     <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" name="name" ng-model="teacher.name" placeholder="Enter name" />
+     </div>
+     <div class="form-group">
+       <label for="gender">Gender</label>
+       <select class="form-control" name="gender" ng-model="teacher.gender">
+         <option value="Male">Male</option>
+         <option value="Female">Female</option>
+       </select>
+     </div>
+     <div class="form-group">
+      <label for="phone_number">Phone Number</label>
+      <input type="tel" class="form-control" name="phone_number" ng-model="teacher.phone_number" placeholder="Enter phone_number" />
+     </div>
+     <div class="form-group">
+      <label for="marital_status">Marital Status</label>
+      <input type="text" class="form-control" name="marital_status" ng-model="teacher.marital_status" placeholder="Enter marital_status" />
+     </div>
+     <div class="form-group">
+      <label for="home_address">Home Address</label>
+      <input type="text" class="form-control" name="home_address" ng-model="teacher.home_address" placeholder="Enter home_address" />
+     </div>
+     <div class="form-group">
+      <label for="home_address">Home Address</label>
+      <textarea class="form-control" name="home_address" ng-model="teacher.home_address">Enter home_address</textarea>
+     </div>
+     <div class="form-group">
+      <label for="qualification">Qualification</label>
+      <textarea class="form-control" name="qualification" ng-model="teacher.qualification">Enter qualification</textarea>
+     </div>
+     <div class="form-group">
+      <label for="date_employed">Date Employed</label>
+      <input type="date" class="form-control" name="date_employed" ng-model="teacher.date_employed" placeholder="Enter date_employed" />
+     </div>
+     <div class="form-group">
+      <label for="uonline">Uonline</label>
+      <input type="text" class="form-control" name="uonline" ng-model="teacher.uonline" placeholder="Enter uonline" />
+     </div>
+     <div class="form-group">
+      <label for="subjects">Subjects</label>
+      <input type="text" class="form-control" name="subjects" ng-model="teacher.subjects" placeholder="Enter subjects" />
+     </div>
+     <div class="form-group">
+      <label for="subjects">Subjects</label>
+      <textarea class="form-control" name="subjects" ng-model="teacher.subjects">Enter subjects</textarea>
+     </div>
+     <div class="form-group">
+      <label for="status">Status</label>
+      <input type="text" class="form-control" name="status" ng-model="teacher.status" placeholder="Enter status" />
+     </div>
+<button ng-click="teacher_save();" type="button" class="btn btn-primary">&nbsp;SAVE&nbsp;</button>
+</form>
+</div><div class="display" id="dview">
+  <table class="table table-hover table-dark table-bordered">    <thead>
+        <tr><th>S/N</th><th>ID</th><th>EMPLOYMENT ID</th><th>NAME</th><th>GENDER</th><th>EMAIL</th><th>PHONE NUMBER</th><th>QUALIFICATION</th><th>&nbsp;</th>
+    </tr></thead><tbody><tr ng-repeat="x in teachers.teacher"><td>{{$index + 1}}</td><td>{{x.id}}</td><td>{{x.employment_id}}</td><td>{{x.name}}</td><td>{{x.gender}}</td><td>{{x.email}}</td><td>{{x.phone_number}}</td><td>{{x.qualification}}</td><td align="center">&nbsp;<i onclick="toggle_display('dnew');" ng-click="do_teacher_update('id', x.id);" class="fas fa-edit"></i>&nbsp;&nbsp;<i onclick="toggle_display('dsview');" ng-click="teacher_view_single('id', x.id);" class="fas fa-eye"></i>&nbsp;&nbsp;<i ng-click="teacher_delete('id', x.id);" class="fas fa-trash"></i></td>&nbsp;
+  </tbody>
+</table>
+</div>
+    <div class="display" id="dsview">
+        <table>
+            <tr><td align="right"><b>id:</b></td><td align="left">&nbsp;{{teacher.id}}</td></tr>
+            <tr><td align="right"><b>employment_id:</b></td><td align="left">&nbsp;{{teacher.employment_id}}</td></tr>
+            <tr><td align="right"><b>name:</b></td><td align="left">&nbsp;{{teacher.name}}</td></tr>
+            <tr><td align="right"><b>gender:</b></td><td align="left">&nbsp;{{teacher.gender}}</td></tr>
+            <tr><td align="right"><b>email:</b></td><td align="left">&nbsp;{{teacher.email}}</td></tr>
+            <tr><td align="right"><b>phone_number:</b></td><td align="left">&nbsp;{{teacher.phone_number}}</td></tr>
+            <tr><td align="right"><b>marital_status:</b></td><td align="left">&nbsp;{{teacher.marital_status}}</td></tr>
+            <tr><td align="right"><b>home_address:</b></td><td align="left">&nbsp;{{teacher.home_address}}</td></tr>
+            <tr><td align="right"><b>qualification:</b></td><td align="left">&nbsp;{{teacher.qualification}}</td></tr>
+            <tr><td align="right"><b>date_employed:</b></td><td align="left">&nbsp;{{teacher.date_employed}}</td></tr>
+            <tr><td align="right"><b>uonline:</b></td><td align="left">&nbsp;{{teacher.uonline}}</td></tr>
+            <tr><td align="right"><b>subjects:</b></td><td align="left">&nbsp;{{teacher.subjects}}</td></tr>
+            <tr><td align="right"><b>status:</b></td><td align="left">&nbsp;{{teacher.status}}</td></tr>
+        </table>
+    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/popper.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/bootstrap.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/angular.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery-ui.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.datepick.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.table2excel.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.uploadfile.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/utility.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/autocomplete.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/src/teachers.js"></script>    </body>
+</html>

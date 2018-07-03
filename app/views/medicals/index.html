@@ -1,0 +1,143 @@
+<!DOCTYPE html> 
+ <html lang="en"> 
+      <head> 
+           <meta content="text/html" charset="utf-8" > 
+           <meta name="viewport" content="width=device-width, initial-scale=1"> 
+           <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" > 
+           <link rel="stylesheet" href="../../../assets/css/jquery-ui.css" > 
+           <link rel="stylesheet" href="../../../assets/css/jquery.datepick.css" > 
+           <link rel="stylesheet" href="../../../assets/css/custom/uploadfile.css" > 
+           <link rel="stylesheet" href="../../../assets/css/fontawesome-all.min.css" > 
+          <link rel="stylesheet" href="../../../assets/css/custom/slide-menu.css" >
+        <link rel="stylesheet" href="../../../assets/css/custom/table-header.css" >
+        <link rel="stylesheet" href="../../../assets/css/custom/view.css" >
+    </head>    <body onload="loadHtmlPage('../menu.html', 'sidemenu');toggle_display('dview');">
+        <div class="container-fluid" style="padding:0; margin:0; top:0; left:0;"> 
+            <div ng-app="medicalsView" ng-controller="medicalsCtrl" class="row">
+                <div id="sidemenu" class="col-xl-3 col-lg-3 col-md-3 d-lg-inline d-md-inline d-sm-none d-none"></div>
+                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <span class="alert alert-danger">{{ berror }}</span>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <ul class="menu">
+                                <li onclick="toggle_display('dview');" class="rootmenu"><i class="fas fa-home" aria-hidden="true"></i><a href="#"> Home</a></li>
+                                <li class="rootmenu"><i class="fas fa-print" aria-hidden="true"></i><a href="#"> Print</a></li>
+                                <li class="rootmenu"><i class="fas fa-cloud-download-alt"></i><a href="#"> Export</a>
+                                    <ul id="menu_list">
+                                        <li><i class="fas fa-file-excel" aria-hidden="true"></i><a href="#">  Excel</a></li>
+                                        <li><i class="fas fa-file-alt" aria-hidden="true"></i><a href="#">  CSV</a></li>
+                                        <li><i class="fas fa-file-pdf" aria-hidden="true"></i><a href="#">  Pdf</a></li>
+                                        <li><i class="fas fa-file-alt" aria-hidden="true"></i><a href="#">  Text</a></li>
+                                        <li><i class="fas fa-file-word" aria-hidden="true"></i><a href="#">  Word</a></li>
+                                    </ul>
+                                </li>
+                                <li onclick="toggle_display('dnew');" class="rootmenu"><i class="fas fa-copy" aria-hidden="true"></i><a href="#"> Add New</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                <div class="row">
+                    <div>
+            <div class="display" id="dnew">
+                <form name="frmMedical"  method="post" enctype="multipart/form-data">
+                    <input #colname type="hidden" name="colname" ng-model="update.col_name" />
+                    <input #colvalue type="hidden" name="colvalue" ng-model="update.col_value" />
+
+     <div class="form-group">
+      <label for="applNo">ApplNo</label>
+      <input type="text" class="form-control" name="applNo" ng-model="medical.applNo" placeholder="Enter applNo" />
+     </div>
+     <div class="form-group">
+      <label for="applVulDis">ApplVulDis</label>
+      <textarea class="form-control" name="applVulDis" ng-model="medical.applVulDis">Enter applVulDis</textarea>
+     </div>
+     <div class="form-group">
+      <label for="applBldGrp">ApplBldGrp</label>
+      <input type="text" class="form-control" name="applBldGrp" ng-model="medical.applBldGrp" placeholder="Enter applBldGrp" />
+     </div>
+     <div class="form-group">
+      <label for="applGenoType">ApplGenoType</label>
+      <input type="text" class="form-control" name="applGenoType" ng-model="medical.applGenoType" placeholder="Enter applGenoType" />
+     </div>
+     <div class="form-group">
+      <label for="applDocVisit">ApplDocVisit</label>
+      <textarea class="form-control" name="applDocVisit" ng-model="medical.applDocVisit">Enter applDocVisit</textarea>
+     </div>
+     <div class="form-group">
+      <label for="applIllType">ApplIllType</label>
+      <textarea class="form-control" name="applIllType" ng-model="medical.applIllType">Enter applIllType</textarea>
+     </div>
+     <div class="form-group">
+      <label for="applAllergies">ApplAllergies</label>
+      <textarea class="form-control" name="applAllergies" ng-model="medical.applAllergies">Enter applAllergies</textarea>
+     </div>
+     <div class="form-group">
+      <label for="applSpecialNeed">ApplSpecialNeed</label>
+      <textarea class="form-control" name="applSpecialNeed" ng-model="medical.applSpecialNeed">Enter applSpecialNeed</textarea>
+     </div>
+     <div class="form-group">
+      <label for="faDoctorName">FaDoctorName</label>
+      <input type="text" class="form-control" name="faDoctorName" ng-model="medical.faDoctorName" placeholder="Enter faDoctorName" />
+     </div>
+     <div class="form-group">
+      <label for="faDoctorAddr">FaDoctorAddr</label>
+      <textarea class="form-control" name="faDoctorAddr" ng-model="medical.faDoctorAddr">Enter faDoctorAddr</textarea>
+     </div>
+     <div class="form-group">
+      <label for="faDoctorPhone">FaDoctorPhone</label>
+      <input type="text" class="form-control" name="faDoctorPhone" ng-model="medical.faDoctorPhone" placeholder="Enter faDoctorPhone" />
+     </div>
+     <div class="form-group">
+      <label for="created_at">Created At</label>
+      <input type="text" class="form-control" name="created_at" ng-model="medical.created_at" placeholder="Enter created_at" />
+     </div>
+     <div class="form-group">
+      <label for="updated_at">Updated At</label>
+      <input type="date" class="form-control" name="updated_at" ng-model="medical.updated_at" placeholder="Enter updated_at" />
+     </div>
+<button ng-click="medical_save();" type="button" class="btn btn-primary">&nbsp;SAVE&nbsp;</button>
+</form>
+</div><div class="display" id="dview">
+  <table class="table table-hover table-dark table-bordered">    <thead>
+        <tr><th>S/N</th><th>ID</th><th>APPLNO</th><th>APPLBLDGRP</th><th>APPLGENOTYPE</th><th>FADOCTORNAME</th><th>FADOCTORADDR</th><th>FADOCTORPHONE</th><th>APPLMEDICALREPORT</th><th>&nbsp;</th>
+    </tr></thead><tbody><tr ng-repeat="x in medicals.medical"><td>{{$index + 1}}</td><td>{{x.id}}</td><td>{{x.applNo}}</td><td>{{x.applBldGrp}}</td><td>{{x.applGenoType}}</td><td>{{x.faDoctorName}}</td><td>{{x.faDoctorAddr}}</td><td>{{x.faDoctorPhone}}</td><td>{{x.applMedicalReport}}</td><td align="center">&nbsp;<i onclick="toggle_display('dnew');" ng-click="do_medical_update('id', x.id);" class="fas fa-edit"></i>&nbsp;&nbsp;<i onclick="toggle_display('dsview');" ng-click="medical_view_single('id', x.id);" class="fas fa-eye"></i>&nbsp;&nbsp;<i ng-click="medical_delete('id', x.id);" class="fas fa-trash"></i></td>&nbsp;
+  </tbody>
+</table>
+</div>
+    <div class="display" id="dsview">
+        <table>
+            <tr><td align="right"><b>id:</b></td><td align="left">&nbsp;{{medical.id}}</td></tr>
+            <tr><td align="right"><b>applNo:</b></td><td align="left">&nbsp;{{medical.applNo}}</td></tr>
+            <tr><td align="right"><b>applVulDis:</b></td><td align="left">&nbsp;{{medical.applVulDis}}</td></tr>
+            <tr><td align="right"><b>applBldGrp:</b></td><td align="left">&nbsp;{{medical.applBldGrp}}</td></tr>
+            <tr><td align="right"><b>applGenoType:</b></td><td align="left">&nbsp;{{medical.applGenoType}}</td></tr>
+            <tr><td align="right"><b>applDocVisit:</b></td><td align="left">&nbsp;{{medical.applDocVisit}}</td></tr>
+            <tr><td align="right"><b>applIllType:</b></td><td align="left">&nbsp;{{medical.applIllType}}</td></tr>
+            <tr><td align="right"><b>applAllergies:</b></td><td align="left">&nbsp;{{medical.applAllergies}}</td></tr>
+            <tr><td align="right"><b>applSpecialNeed:</b></td><td align="left">&nbsp;{{medical.applSpecialNeed}}</td></tr>
+            <tr><td align="right"><b>faDoctorName:</b></td><td align="left">&nbsp;{{medical.faDoctorName}}</td></tr>
+            <tr><td align="right"><b>faDoctorAddr:</b></td><td align="left">&nbsp;{{medical.faDoctorAddr}}</td></tr>
+            <tr><td align="right"><b>faDoctorPhone:</b></td><td align="left">&nbsp;{{medical.faDoctorPhone}}</td></tr>
+            <tr><td align="right"><b>applMedicalReport:</b></td><td align="left">&nbsp;{{medical.applMedicalReport}}</td></tr>
+            <tr><td align="right"><b>created_at:</b></td><td align="left">&nbsp;{{medical.created_at}}</td></tr>
+            <tr><td align="right"><b>updated_at:</b></td><td align="left">&nbsp;{{medical.updated_at}}</td></tr>
+        </table>
+    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/popper.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/bootstrap.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/angular.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery-ui.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.datepick.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.table2excel.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.uploadfile.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/utility.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/autocomplete.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/src/medicals.js"></script>    </body>
+</html>

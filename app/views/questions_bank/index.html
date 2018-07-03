@@ -1,0 +1,174 @@
+<!DOCTYPE html> 
+ <html lang="en"> 
+      <head> 
+           <meta content="text/html" charset="utf-8" > 
+           <meta name="viewport" content="width=device-width, initial-scale=1"> 
+           <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css" > 
+           <link rel="stylesheet" href="../../../assets/css/jquery-ui.css" > 
+           <link rel="stylesheet" href="../../../assets/css/jquery.datepick.css" > 
+           <link rel="stylesheet" href="../../../assets/css/custom/uploadfile.css" > 
+           <link rel="stylesheet" href="../../../assets/css/fontawesome-all.min.css" > 
+          <link rel="stylesheet" href="../../../assets/css/custom/slide-menu.css" >
+        <link rel="stylesheet" href="../../../assets/css/custom/table-header.css" >
+        <link rel="stylesheet" href="../../../assets/css/custom/view.css" >
+    </head>    <body onload="loadHtmlPage('../menu.html', 'sidemenu');toggle_display('dview');">
+        <div class="container-fluid" style="padding:0; margin:0; top:0; left:0;"> 
+            <div ng-app="questions_bankView" ng-controller="questions_bankCtrl" class="row">
+                <div id="sidemenu" class="col-xl-3 col-lg-3 col-md-3 d-lg-inline d-md-inline d-sm-none d-none"></div>
+                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <span class="alert alert-danger">{{ berror }}</span>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <ul class="menu">
+                                <li onclick="toggle_display('dview');" class="rootmenu"><i class="fas fa-home" aria-hidden="true"></i><a href="#"> Home</a></li>
+                                <li class="rootmenu"><i class="fas fa-print" aria-hidden="true"></i><a href="#"> Print</a></li>
+                                <li class="rootmenu"><i class="fas fa-cloud-download-alt"></i><a href="#"> Export</a>
+                                    <ul id="menu_list">
+                                        <li><i class="fas fa-file-excel" aria-hidden="true"></i><a href="#">  Excel</a></li>
+                                        <li><i class="fas fa-file-alt" aria-hidden="true"></i><a href="#">  CSV</a></li>
+                                        <li><i class="fas fa-file-pdf" aria-hidden="true"></i><a href="#">  Pdf</a></li>
+                                        <li><i class="fas fa-file-alt" aria-hidden="true"></i><a href="#">  Text</a></li>
+                                        <li><i class="fas fa-file-word" aria-hidden="true"></i><a href="#">  Word</a></li>
+                                    </ul>
+                                </li>
+                                <li onclick="toggle_display('dnew');" class="rootmenu"><i class="fas fa-copy" aria-hidden="true"></i><a href="#"> Add New</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                <div class="row">
+                    <div>
+            <div class="display" id="dnew">
+                <form name="frmQuestions_bank"  method="post" enctype="multipart/form-data">
+                    <input #colname type="hidden" name="colname" ng-model="update.col_name" />
+                    <input #colvalue type="hidden" name="colvalue" ng-model="update.col_value" />
+
+     <div class="form-group">
+      <label for="question">Question</label>
+      <input type="text" class="form-control" name="question" ng-model="questions_bank.question" placeholder="Enter question" />
+     </div>
+     <div class="form-group">
+      <label for="question">Question</label>
+      <textarea class="form-control" name="question" ng-model="questions_bank.question">Enter question</textarea>
+     </div>
+     <div class="form-group">
+      <label for="optionA">OptionA</label>
+      <input type="text" class="form-control" name="optionA" ng-model="questions_bank.optionA" placeholder="Enter optionA" />
+     </div>
+     <div class="form-group">
+      <label for="optionA">OptionA</label>
+      <textarea class="form-control" name="optionA" ng-model="questions_bank.optionA">Enter optionA</textarea>
+     </div>
+     <div class="form-group">
+      <label for="optionB">OptionB</label>
+      <input type="text" class="form-control" name="optionB" ng-model="questions_bank.optionB" placeholder="Enter optionB" />
+     </div>
+     <div class="form-group">
+      <label for="optionB">OptionB</label>
+      <textarea class="form-control" name="optionB" ng-model="questions_bank.optionB">Enter optionB</textarea>
+     </div>
+     <div class="form-group">
+      <label for="optionC">OptionC</label>
+      <input type="text" class="form-control" name="optionC" ng-model="questions_bank.optionC" placeholder="Enter optionC" />
+     </div>
+     <div class="form-group">
+      <label for="optionC">OptionC</label>
+      <textarea class="form-control" name="optionC" ng-model="questions_bank.optionC">Enter optionC</textarea>
+     </div>
+     <div class="form-group">
+      <label for="optionD">OptionD</label>
+      <input type="text" class="form-control" name="optionD" ng-model="questions_bank.optionD" placeholder="Enter optionD" />
+     </div>
+     <div class="form-group">
+      <label for="optionD">OptionD</label>
+      <textarea class="form-control" name="optionD" ng-model="questions_bank.optionD">Enter optionD</textarea>
+     </div>
+     <div class="form-group">
+      <label for="optionE">OptionE</label>
+      <input type="text" class="form-control" name="optionE" ng-model="questions_bank.optionE" placeholder="Enter optionE" />
+     </div>
+     <div class="form-group">
+      <label for="optionE">OptionE</label>
+      <textarea class="form-control" name="optionE" ng-model="questions_bank.optionE">Enter optionE</textarea>
+     </div>
+     <div class="form-group">
+      <label for="master_chained">Master Chained</label>
+      <input type="text" class="form-control" name="master_chained" ng-model="questions_bank.master_chained" placeholder="Enter master_chained" />
+     </div>
+     <div class="form-group">
+      <label for="siblings">Siblings</label>
+      <input type="text" class="form-control" name="siblings" ng-model="questions_bank.siblings" placeholder="Enter siblings" />
+     </div>
+     <div class="form-group">
+      <label for="answer">Answer</label>
+      <input type="text" class="form-control" name="answer" ng-model="questions_bank.answer" placeholder="Enter answer" />
+     </div>
+     <div class="form-group">
+      <label for="answer">Answer</label>
+      <textarea class="form-control" name="answer" ng-model="questions_bank.answer">Enter answer</textarea>
+     </div>
+     <div class="form-group">
+      <label for="subject">Subject</label>
+      <input type="text" class="form-control" name="subject" ng-model="questions_bank.subject" placeholder="Enter subject" />
+     </div>
+     <div class="form-group">
+      <label for="exam_type">Exam Type</label>
+      <input type="text" class="form-control" name="exam_type" ng-model="questions_bank.exam_type" placeholder="Enter exam_type" />
+     </div>
+     <div class="form-group">
+      <label for="question_Image">Question Image</label>
+      <input type="text" class="form-control" name="question_Image" ng-model="questions_bank.question_Image" placeholder="Enter question_Image" />
+     </div>
+     <div class="form-group">
+      <label for="question_Image">Question Image</label>
+      <textarea class="form-control" name="question_Image" ng-model="questions_bank.question_Image">Enter question_Image</textarea>
+     </div>
+     <div class="form-group">
+      <label for="scorepoint">Scorepoint</label>
+      <input type="text" class="form-control" name="scorepoint" ng-model="questions_bank.scorepoint" placeholder="Enter scorepoint" />
+     </div>
+<button ng-click="questions_bank_save();" type="button" class="btn btn-primary">&nbsp;SAVE&nbsp;</button>
+</form>
+</div><div class="display" id="dview">
+  <table class="table table-hover table-dark table-bordered">    <thead>
+        <tr><th>S/N</th><th>ID</th><th>QUESTION</th><th>OPTIONA</th><th>OPTIONB</th><th>OPTIONC</th><th>OPTIOND</th><th>ANSWER</th><th>SUBJECT</th><th>EXAM TYPE</th><th>SCOREPOINT</th><th>&nbsp;</th>
+    </tr></thead><tbody><tr ng-repeat="x in questions_bank.questions_bank"><td>{{$index + 1}}</td><td>{{x.id}}</td><td>{{x.question}}</td><td>{{x.optionA}}</td><td>{{x.optionB}}</td><td>{{x.optionC}}</td><td>{{x.optionD}}</td><td>{{x.answer}}</td><td>{{x.subject}}</td><td>{{x.exam_type}}</td><td>{{x.scorepoint}}</td><td align="center">&nbsp;<i onclick="toggle_display('dnew');" ng-click="do_questions_bank_update('id', x.id);" class="fas fa-edit"></i>&nbsp;&nbsp;<i onclick="toggle_display('dsview');" ng-click="questions_bank_view_single('id', x.id);" class="fas fa-eye"></i>&nbsp;&nbsp;<i ng-click="questions_bank_delete('id', x.id);" class="fas fa-trash"></i></td>&nbsp;
+  </tbody>
+</table>
+</div>
+    <div class="display" id="dsview">
+        <table>
+            <tr><td align="right"><b>id:</b></td><td align="left">&nbsp;{{questions_bank.id}}</td></tr>
+            <tr><td align="right"><b>question:</b></td><td align="left">&nbsp;{{questions_bank.question}}</td></tr>
+            <tr><td align="right"><b>optionA:</b></td><td align="left">&nbsp;{{questions_bank.optionA}}</td></tr>
+            <tr><td align="right"><b>optionB:</b></td><td align="left">&nbsp;{{questions_bank.optionB}}</td></tr>
+            <tr><td align="right"><b>optionC:</b></td><td align="left">&nbsp;{{questions_bank.optionC}}</td></tr>
+            <tr><td align="right"><b>optionD:</b></td><td align="left">&nbsp;{{questions_bank.optionD}}</td></tr>
+            <tr><td align="right"><b>optionE:</b></td><td align="left">&nbsp;{{questions_bank.optionE}}</td></tr>
+            <tr><td align="right"><b>master_chained:</b></td><td align="left">&nbsp;{{questions_bank.master_chained}}</td></tr>
+            <tr><td align="right"><b>siblings:</b></td><td align="left">&nbsp;{{questions_bank.siblings}}</td></tr>
+            <tr><td align="right"><b>answer:</b></td><td align="left">&nbsp;{{questions_bank.answer}}</td></tr>
+            <tr><td align="right"><b>subject:</b></td><td align="left">&nbsp;{{questions_bank.subject}}</td></tr>
+            <tr><td align="right"><b>exam_type:</b></td><td align="left">&nbsp;{{questions_bank.exam_type}}</td></tr>
+            <tr><td align="right"><b>question_Image:</b></td><td align="left">&nbsp;{{questions_bank.question_Image}}</td></tr>
+            <tr><td align="right"><b>scorepoint:</b></td><td align="left">&nbsp;{{questions_bank.scorepoint}}</td></tr>
+        </table>
+    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/popper.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/bootstrap.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/angular.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery-ui.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.datepick.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.table2excel.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/jquery.uploadfile.min.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/utility.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/js/autocomplete.js"></script>
+    <script language="javascript" type="text/javascript" src="../../../assets/src/questions_bank.js"></script>    </body>
+</html>
